@@ -17,10 +17,10 @@ public:
   defer_raii &operator=(defer_raii &&) = delete;
 
   // construct the object from the given callable
-  template <typename FF> constexpr explicit defer_raii(FF &&f) noexcept : cleanup_function(std::forward<FF>(f)) {}
+  template <typename FF> explicit defer_raii(FF &&f) noexcept : cleanup_function(std::forward<FF>(f)) {}
 
   // when the object goes out of scope call the cleanup function
-  __attribute__((always_inline)) ~defer_raii() noexcept { cleanup_function(); }
+   ~defer_raii() noexcept { cleanup_function(); }
 
 private:
   const F cleanup_function;
@@ -29,7 +29,7 @@ private:
 
 struct ADDExpression 
 {
-  template <typename F> constexpr __attribute__((always_inline)) detail::defer_raii<F> operator+(F&& f) const noexcept
+  template <typename F> detail::defer_raii<F> operator+(F&& f) const noexcept
   {
     return detail::defer_raii<F>{std::forward<F>(f)};
   }
