@@ -1,8 +1,8 @@
 #CPP_Defer
 
-C++ defer based on C++ RAll makes the code simpler
+C++ defer based on C++ RAIImakes the code simpler
 
-基于C++RAll机制的C++ defer，让代码更加简洁
+基于C++RAII机制的C++ defer，让代码更加简洁
 
 
 Testing on Clang shows near-zero overhead with excellent optimization capability from Clang.
